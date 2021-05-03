@@ -79,6 +79,3 @@ Check out the demo of this project here : https://www.youtube.com/watch?v=veWvoz
 >> Harsh Gulati
    - Github : https://github.com/harsh-gulati-14
    - LinkedIn : https://www.linkedin.com/in/harsh-gulati-005585ab/
->> Prathamesh Bhalekar
-   - Github : https://github.com/prathameshbhalekar
-   - LinkedIn : https://www.linkedin.com/in/prathmesh-bhalekar-b56038197/
