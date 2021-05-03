@@ -67,7 +67,7 @@ $ npm run dev
 # Open http://localhost:9000 on your browser
 ```
 # DEMO
-Check out the demo of this project here : https://www.youtube.com/watch?v=veWvozV6o9M
+Check out the demo of this project here : https://www.youtube.com/watch?v=jA3157m613k
 
 # TEAM RED SWORD :
 >> Rushabh Kela 
