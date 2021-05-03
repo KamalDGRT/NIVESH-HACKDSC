@@ -1,0 +1,196 @@
+<!-- Styles -->
+<html>
+  <head>
+    <title>Goal Planning - Lumpsum</title>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="shortcut icon" href="../../public/nivesh.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+  
+  </style>
+  
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  
+  <!-- Chart code -->
+  <script>
+    function values() {
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  // Create chart instance
+  var chart = am4core.create("chartdiv", am4charts.XYChart);
+  
+  var jsonArr = [];
+  var x = parseInt(document.getElementById("amount").value);
+  var r = parseInt(document.getElementById("rate").value);
+  var re = 1 + (r/100);
+  var d = parseInt(document.getElementById("years").value);
+  var init = x/(re**d);
+  var temp = init;
+  var date = new Date();
+  var yyyy = date.getFullYear();
+  var mm = date.getMonth() + 1;
+  var dd = date.getDate();
+  for (var i = 0; i <= d; i++) {
+      jsonArr.push({
+          date: yyyy + "-" + mm + "-" + dd,
+          value: init
+      });
+      yyyy += 1;
+      init = init*re;
+      init = init.toFixed(2);
+  }
+  chart.data = jsonArr;
+
+    document.getElementById("texts").innerHTML = 
+    `
+    <h1>Investment amount needed:<h1>
+      <h2> ₹ ${temp} </h1>
+    `;
+    document.getElementById("texts").style.border = "thick dashed blue";
+    document.getElementById("texts").style.backgroundColor = "greenyellow";
+    document.getElementById("texts").style.padding = "30px";
+  //document.write(jsonArr);
+  // Set input format for the dates
+  //chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+  
+  // Create axes
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  
+  // Create series
+  var series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value";
+  series.dataFields.dateX = "date";
+  series.tooltipText = "{value}"
+  series.strokeWidth = 5;
+  series.minBulletDistance = 15;
+  
+  // Drop-shaped tooltips
+  series.tooltip.background.cornerRadius = 20;
+  series.tooltip.background.strokeOpacity = 0;
+  series.tooltip.pointerOrientation = "vertical";
+  series.tooltip.label.minWidth = 40;
+  series.tooltip.label.minHeight = 40;
+  series.tooltip.label.textAlign = "middle";
+  series.tooltip.label.textValign = "middle";
+  
+  // Make bullets grow on hover
+  var bullet = series.bullets.push(new am4charts.CircleBullet());
+  bullet.circle.strokeWidth = 2;
+  bullet.circle.radius = 4;
+  bullet.circle.fill = am4core.color("#fff");
+  
+  var bullethover = bullet.states.create("hover");
+  bullethover.properties.scale = 1.3;
+  
+  // Make a panning cursor
+  chart.cursor = new am4charts.XYCursor();
+  chart.cursor.behavior = "panXY";
+  chart.cursor.xAxis = dateAxis;
+  chart.cursor.snapToSeries = series;
+  
+  // Create vertical scrollbar and place it before the value axis
+  chart.scrollbarY = new am4core.Scrollbar();
+  chart.scrollbarY.parent = chart.leftAxesContainer;
+  chart.scrollbarY.toBack();
+  
+  // Create a horizontal scrollbar with previe and place it underneath the date axis
+  chart.scrollbarX = new am4charts.XYChartScrollbar();
+  chart.scrollbarX.series.push(series);
+  chart.scrollbarX.parent = chart.bottomAxesContainer;
+  
+  dateAxis.start = 0.79;
+  dateAxis.keepSelection = true;
+  
+    
+  
+  }); // end am4core.ready()
+}
+  </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-chart-line fa-lg" aria-hidden="true"></i>
+        निVESH
+      </a>
+    
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="../#road">Roadmap</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="../NIVESH/simulator">GrowMore</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/visualisations">Visualisation</a>
+        </li>
+    
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Calculators
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="../Calculator">Stock Market vs FD returns</a>
+          <a class="dropdown-item" href="../Calculator1">Goal Planning</a>
+        </div>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="../news">News</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="../memes">Memes</a>
+        </li>
+        <li style="margin-left: 600px ;" class="nav-item">
+        <a class="nav-link" href="/login/">Login</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/signup/">Register</a>
+        </li>
+      </ul>
+      </nav>
+    <div class="container">
+      <div style="margin-top: 30px;" class="jumbotron">
+          <h1 align="center">Goal Planning - Lumpsum</h1>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+                  <label style="font-size: 35px;" for="amount"><b>Targeted Wealth:</b></label>
+                  <input style="width: 500px;" type="number" class="form-control" id="amount" name="amount"><br>
+                  <label style="font-size: 35px;" for="years"><b>Expected rate of return (P.A.): </b></label>
+                  <input style="width: 500px;" type="number" class="form-control" id="rate" name="rate"><br>
+                  <label style="font-size: 35px;" for="rate"><b>Tenure (in years): </b></label>
+                  <input style="width: 500px;" type="number" class="form-control" id="years" name="years"><br>
+                  
+                  <button style="font-size: 30px; margin-left: 150px;" class="btn btn-primary" onclick="values()">Submit</button>
+          </div>
+          <div class="col-md-6">
+              <div id="texts">
+
+              </div>
+          </div>
+      </div>
+      <br>
+      <div id="chartdiv"></div>
+  </div>
+
+  </body>
+  </html>

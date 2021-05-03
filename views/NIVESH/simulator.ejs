@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>GrowMore</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../public/input.css">
+	<link rel="shortcut icon" href="../../public/nivesh.png">
+	<link rel="stylesheet" type="text/css" href="../../public/button.css">
+	<link rel="stylesheet" type="text/css" href="../../public/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/main.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:rgb(239, 239, 250)">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="/">
+		  <i class="fas fa-chart-line fa-lg" aria-hidden="true"></i>
+		  निVESH
+		</a>
+	
+		<!-- Links -->
+		<ul class="navbar-nav">
+		  <li class="nav-item">
+			<a class="nav-link" href="../#road">Roadmap</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="../NIVESH/simulator">GrowMore</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/visualisations">Visualisation</a>
+		  </li>
+	
+		  <!-- Dropdown -->
+		  <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			  Calculators
+			</a>
+			<div class="dropdown-menu">
+			  <a class="dropdown-item" href="../Calculator">Stock Market vs FD returns</a>
+			  <a class="dropdown-item" href="../Calculator1">Goal Planning</a>
+			</div>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="../news">News</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="../memes">Memes</a>
+		  </li>
+		  <li style="margin-left: 600px ;" class="nav-item">
+			<a class="nav-link" href="/login/">Login</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/signup/">Register</a>
+		  </li>
+		</ul>
+	  </nav>
+	<div style="margin-left: 50px; margin-top: 50px;">
+	<div id="portfolio" style="color: aliceblue;">
+		
+		<h2>
+			Portfolio Value: 
+			₹ <span id="portfolioValue">10000</span>
+			(<span id="portfolioReturn">+0.00%</span>)
+		</h2>
+
+		<h4>
+			Buying Power: ₹ <span id="buyingPower">10000</span><br/><br/>
+		
+			<span id="date" class="date">DATE</span>
+			
+			<button class="button nextDay button--winona button--border-thin button--round-s" data-text="REFRESH" type="submit" onclick="latestval();"><span>REFRESH</span></button>
+			<br/>
+			Transaction History :
+			<button class="show button history button--winona button--border-thin button--round-s" data-text="SHOW" type="submit"><span>SHOW</span></button>
+			<button class="hide button history button--winona button--border-thin button--round-s" data-text="HIDE" type="submit"><span>HIDE</span></button>
+
+
+			<div id="transactionHistory"></div>
+			
+		</h4>
+		
+		<div id="portfolioGraph"></div>
+		
+		<br/>
+		<table id="portfolioTable">
+		    
+		  <tr>
+		    <td onclick="getStockGraph(this.value);">Stock</td>
+		    <td>Shares</td>
+		    <td>Total</td>
+		    <td>Return</td>
+
+		  </tr>
+		  
+		</table>
+
+
+	</div><!--close portfolio-->
+
+
+	<div id="stocks">
+		<h1>DATE: <span id="stockDate"></span></h1>
+		
+		<div ng-app="tradeApp" ng-controller="tradeController">
+			<div id="buyStock" class="tradeDiv">
+				<div>
+					<input id="buyNum" type="number" ng-model="buyNum" ng-init="buyNum=0"
+					class="input__field input__field--minoru" min="0">
+					<br style="clear: both;" />
+					<label for="number" class="input__label input__label--minoru" for="buyNum">
+					<span class="input__label-content input__label-content--minoru">Quantity To Buy</span>
+					</label>
+				</div>
+				<br style="clear: both;"><br/>
+				<div>
+					Current <span id="buyTicker">  </span>
+					Market Price: <span id="buyPrice" ng-model="buyTicker"></span>
+				</div>
+				<br style="clear: both;">
+				<div>
+					Total Price: 
+					<strong id="buyTotalPrice">₹ {{ buyTotal()}}</strong>
+				</div>
+				<button class="button button--winona button--border-thin button--round-s btn-success" data-text="BUY" type="submit" onclick="buyStock();" ng-click="reset()"><span>BUY</span></button>
+				<button class="cancel button button--winona button--border-thin button--round-s btn-primary" data-text="CANCEL" type="submit" ng-click="reset()"><span>CANCEL</span></button>
+		
+			</div>
+		
+
+
+
+			<div id="sellStock" class="tradeDiv">
+				<div>
+					<input id="sellNum" type="number" ng-model="sellNum" class="input__field input__field--minoru" min="0" ng-init="sellNum=0">
+					<br style="clear: both;"/>
+					<label for="number" class="input__label input__label--minoru" for="sellNum">
+					Quantity To Sell: 
+					</label>
+				</div>
+				<br style="clear: both;"><br/>
+				<div>
+					Current Market Price: <span id="sellPrice" ng-model="sellTicker"></span>
+				</div>
+				<br style="clear: both;">
+				<div>
+					Total Price: 
+					<strong id="sellTotalPrice">₹ {{ sellTotal()}}</strong>
+				</div>
+				<button class="button button--winona button--border-thin button--round-s btn-success" data-text="SELL" type="submit" onclick="sellStock();" ng-click="reset()"><span>SELL</span></button>
+				<button class="cancel button button--winona button--border-thin button--round-s btn-primary" data-text="CANCEL" type="submit" ng-click="reset()"><span>CANCEL</span></button>
+			</div>
+
+
+		</div> <!-- close tradeApp -->
+				
+
+		<div id="searchDiv">
+			<div id="searchField">
+				<span class="input input--minoru" class="tickerInput">
+					<input id="ticker" class="input__field input__field--minoru" type="text" placeholder="Ticker Name">
+					<label for="ticker" class="input__label input__label--minoru" for="input-13">
+						<!-- <span class="input__label-content input__label-content--minoru">Ticker Symbol</span> -->
+					</label>
+				</span>
+				<button class="search button button--winona button--border-thin button--round-s btn-warning" data-text="SEARCH" type="submit" onclick="search();"><span>SEARCH</span></button>
+				<br/>
+			</div>	
+
+			<button class="buy button button--winona button--border-thin button--round-s btn-success" data-text="BUY"><span>BUY</span></button>
+			<button class="sell button button--winona button--border-thin button--round-s btn-primary" data-text="SELL"><span>SELL</span></button>
+
+		</div><!--close searchDiv-->
+		
+		<div id="chart_div"></div>
+		<div id="summary"></div>
+	</div><!--close stock-->
+		
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	
+	<script src="../../public/moment.js"></script>
+	<script src="../../public/semantic.min.js"></script>
+	<script src="../../public/main.js"></script>
+
+
+	<script>
+
+		
+</script>
+</div>
+</body>
+</html>

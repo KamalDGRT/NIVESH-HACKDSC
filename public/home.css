@@ -1,0 +1,91 @@
+header {
+  position: relative;
+  background-color: black;
+  height: 200px;
+  /* height: 75vh; */
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  height: 10px;
+  z-index: 2;
+}
+.nim
+{
+    color: black;
+}
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.display-3 {
+  animation: head 6s infinite ease-in-out 0s;
+}
+
+@keyframes head {
+  0% {
+    color: rgb(224, 34, 34);
+  }
+  25% {
+    color: white;
+  }
+  50% {
+    color: rgb(19, 169, 214);
+  }
+  100% {
+    color: rgb(58, 199, 15);
+  }
+}
+
+.btn-outline-light:hover {
+  background-color:cyan !important;
+}
+
+
+.btn-outline-light {
+  animation: fading 6s infinite ease-in-out 0s;
+}
+
+@keyframes fading {
+  0% {
+    border: 2px solid rgb(224, 34, 34);
+    color: rgb(224, 34, 34);
+  }
+  25% {
+    border: 2px solid white;
+    color: white;
+  }
+  50% {
+    border: 2px solid rgb(19, 169, 214);
+    color: rgb(19, 169, 214);
+  }
+  100% {
+    border: 2px solid rgb(58, 199, 15);
+    color: rgb(58, 199, 15);
+  }
+}

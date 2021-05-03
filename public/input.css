@@ -1,0 +1,188 @@
+/* For Input Field*/
+
+html{
+	font-family:sans-serif;
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
+}
+input,select,textarea{
+	font-family:inherit;
+	font-size:100%;
+	margin:0;
+}
+input{
+	line-height:normal;
+	float: left;
+}
+select{
+	text-transform:none;
+}
+html input[type="button"],input[type="reset"],input[type="submit"]{
+	-webkit-appearance:button;
+	cursor:pointer;
+}
+button[disabled],html input[disabled]{
+	cursor:default;
+}
+input[type="checkbox"],input[type="radio"]{
+	box-sizing:border-box;padding:0;
+}
+input[type="search"]{
+	-webkit-appearance:textfield;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box;
+	box-sizing:content-box;
+}
+input[type="search"]::-webkit-search-cancel-input[type="search"]::-webkit-search-decoration{
+	-webkit-appearance:none;
+}
+button::-moz-focus-inner,input::-moz-focus-inner{
+	border:0;
+	padding:0;
+}
+textarea{
+	overflow:auto;
+	vertical-align:top;
+}
+
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	max-width: 200px;
+	width: calc(100% - 2em);
+	vertical-align: top;
+}
+
+.input__field {
+	position: relative;
+	display: inline-block;
+	float: left;
+	padding: 0.8em;
+	width: 200px;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #aaa;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+	outline: none;
+}
+
+.input__label {
+	display: inline-block;
+	float: left;
+	padding: 0 1em;
+	width: 200px;
+	color: #6a7989;
+	font-weight: bold;
+	font-size: 70.25%;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.input__label-content {
+	position: relative;
+	display: block;
+	padding: 1.6em 0;
+	width: 200px;
+}
+
+
+
+
+/* Input Specific Field Minoru */
+.input__field--minoru {
+	width: 200px;
+	background: #fff;
+	box-shadow: 0px 0px 0px 2px transparent;
+	color: #458B00;
+	-webkit-transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s;
+	float: left;
+}
+
+.input__label--minoru {
+	padding: 0;
+	width: 200px;
+	text-align: left;
+}
+
+.input__label--minoru::after {
+	content: '';
+  	position: absolute;
+  	top: 0;
+  	z-index: -1;
+  	width: 200px;
+  	height: 4em;
+	box-shadow: 0px 0px 0px 0px;
+	color: rgba(199,152,157, 0.6);
+}
+
+.input__field--minoru:focus {
+	box-shadow: 0px 0px 0px 2px #76EE00;
+}
+
+.input__field--minoru:focus + .input__label--minoru {
+	pointer-events: none;
+}
+
+.input__field--minoru:focus + .input__label--minoru::after {
+	-webkit-animation: anim-shadow 0.3s forwards;
+	animation: anim-shadow 0.3s forwards;
+}
+
+@-webkit-keyframes anim-shadow {
+	to {
+		box-shadow: 0px 0px 200px 50px;
+    	opacity: 0;
+	}
+}
+
+@keyframes anim-shadow {
+	to {
+		box-shadow: 0px 0px 200px 50px;
+    	opacity: 0;
+	}
+}
+
+.input__label-content--minoru {
+	padding: 0.75em 0.15em;
+}
+
+
+
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	background: #f9f7f6;
+	color: #404d5b;
+	font-weight: 500;
+	/*font-size: 1.05em;*/
+	font-family: 'Raleway', Arial, sans-serif;
+}
+
+
+.content {
+	/*font-size: 100%;*/
+	padding: 3em 0;
+}
+
+.content h2 {
+	margin: 0 0 2em;
+	opacity: 0.1;
+}
+

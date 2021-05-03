@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="/static/favicon.b6a5d77ddb70.png">
+  <title>निVESH</title>
+  <link rel="stylesheet" href="../../public/home.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <!-- FontAwesome CSS -->
+  <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+  <!-- SVG Icons CSS -->
+  <!-- <link rel="stylesheet" href="/static/css/svg.71e3d86c8d33.css">
+
+<link rel="stylesheet" href="/static/css/main.bd26f7d73223.css">
+<link rel="stylesheet" href="/static/css/auth.8d8841e9a9d5.css"> -->
+
+
+  <link href="../../public/homeassets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Tether JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+
+  <!-- jQuery-confirm JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+
+  <!-- Chart.js CDN-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+  <!-- Django Secure AJAX JS -->
+  <script src="/static/js/csrf_ajax.67a5c23fbd3a.js"></script>
+
+  <!-- Custom JS -->
+  <script src="/static/js/transaction.c5b530b843b0.js"></script>
+  <script src="home.4ee5f5cc61c3.js"></script>
+  <script src="/static/js/loan.94a4fd44c71c.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="../../public/nivesh.png">
+  <style type="text/css">
+    :root {
+      --color1: #FD8F33;
+      --color2: #0DC8AB;
+      --color3: #05B0DE;
+      --color4: #8E7CCC;
+    }
+
+    .main-timeline {
+      font-family: 'Source Sans Pro', sans-serif;
+      position: relative;
+    }
+
+    .main-timeline:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .main-timeline .timeline {
+      width: 50.1%;
+      padding: 20px 0 20px 100px;
+      float: right;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-timeline .timeline:before,
+    .main-timeline .timeline:after {
+      content: '';
+      background: var(--color1);
+      height: 100%;
+      width: 28px;
+      position: absolute;
+      left: -11px;
+      top: 0;
+    }
+
+    .main-timeline .timeline:after {
+      background: var(--color1);
+      height: 18px;
+      width: 200px;
+      box-shadow: 0 0 10px -5px #000;
+      transform: translateY(-50%);
+      top: 50%;
+      left: -90px;
+    }
+
+    .main-timeline .timeline-content {
+      color: #517d82;
+      background-color: var(--color1);
+      padding: 0 0 0 80px;
+      box-shadow: 0 0 20px -10px #000;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .main-timeline .timeline-content:hover {
+      color: #517d82;
+      text-decoration: none;
+    }
+
+    .main-timeline .timeline-icon {
+      color: #fff;
+      background-color: var(--color1);
+      font-size: 35px;
+      text-align: center;
+      line-height: 62px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      left: -100px;
+      top: 50%;
+      z-index: 1;
+    }
+
+    .main-timeline .timeline-year {
+      color: #517d82;
+      background-color: #fff;
+      font-size: 35px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 93px;
+      height: 113px;
+      width: 113px;
+      border: 6px solid var(--color1);
+      box-shadow: 0 0 10px -5px #000;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      z-index: 1;
+    }
+
+    .main-timeline .inner-content {
+      background-color: #fff;
+      padding: 10px;
+    }
+
+    .main-timeline .title {
+      color: var(--color1);
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 5px 0;
+    }
+
+    .main-timeline .description {
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .main-timeline .timeline:nth-child(even) {
+      padding: 20px 100px 20px 0;
+      float: left;
+    }
+
+    .main-timeline .timeline:nth-child(even):before {
+      left: auto;
+      right: -14.5px;
+    }
+
+    .main-timeline .timeline:nth-child(even):after {
+      left: auto;
+      right: -90px;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-content {
+      padding: 0 80px 0 0;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-icon {
+      left: auto;
+      right: -100px;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-year {
+      left: auto;
+      right: 50px;
+    }
+
+    .main-timeline .timeline:nth-child(4n+2):before,
+    .main-timeline .timeline:nth-child(4n+2):after {
+      background: var(--color2);
+    }
+
+    .main-timeline .timeline:nth-child(4n+2) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+2) .timeline-icon {
+      background-color: var(--color2);
+    }
+
+    .main-timeline .timeline:nth-child(4n+2) .timeline-year {
+      border-color: var(--color2);
+    }
+
+    .main-timeline .timeline:nth-child(4n+2) .title {
+      color: var(--color2);
+    }
+
+    .main-timeline .timeline:nth-child(4n+3):before,
+    .main-timeline .timeline:nth-child(4n+3):after {
+      background: var(--color3);
+    }
+
+    .main-timeline .timeline:nth-child(4n+3) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+3) .timeline-icon {
+      background-color: var(--color3);
+    }
+
+    .main-timeline .timeline:nth-child(4n+3) .timeline-year {
+      border-color: var(--color3);
+    }
+
+    .main-timeline .timeline:nth-child(4n+3) .title {
+      color: var(--color3);
+    }
+
+    .main-timeline .timeline:nth-child(4n+4):before,
+    .main-timeline .timeline:nth-child(4n+4):after {
+      background: var(--color4);
+    }
+
+    .main-timeline .timeline:nth-child(4n+4) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+4) .timeline-icon {
+      background-color: var(--color4);
+    }
+
+    .main-timeline .timeline:nth-child(4n+4) .timeline-year {
+      border-color: var(--color4);
+    }
+
+    .main-timeline .timeline:nth-child(4n+4) .title {
+      color: var(--color4);
+    }
+
+    @media only screen and (max-width:1200px) {
+      .main-timeline .timeline:before {
+        left: -12.5px;
+      }
+
+      .main-timeline .timeline:nth-child(even):before {
+        right: -14px;
+      }
+    }
+
+    @media only screen and (max-width:990px) {
+      .main-timeline .timeline:before {
+        left: -12.5px;
+      }
+    }
+
+    @media only screen and (max-width:767px) {
+
+      .main-timeline .timeline,
+      .main-timeline .timeline:nth-child(even) {
+        width: 100%;
+        padding: 20px 0 20px 37px;
+      }
+
+      .main-timeline .timeline:before {
+        left: 0;
+      }
+
+      .main-timeline .timeline:nth-child(even):before {
+        right: auto;
+        left: 0;
+      }
+
+      .main-timeline .timeline:after,
+      .main-timeline .timeline:nth-child(even) .timeline:after {
+        display: none;
+      }
+
+      .main-timeline .timeline-icon,
+      .main-timeline .timeline:nth-child(even) .timeline-icon {
+        left: 0;
+        display: none;
+      }
+
+      .main-timeline .timeline-year,
+      .main-timeline .timeline:nth-child(even) .timeline-year {
+        height: 75px;
+        width: 75px;
+        line-height: 60px;
+        font-size: 25px;
+        left: 1px;
+      }
+
+      .main-timeline .timeline-content,
+      .main-timeline .timeline:nth-child(even) .timeline-content {
+        padding: 0 0 0 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-chart-line fa-lg" aria-hidden="true"></i>
+      निVESH
+    </a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#road">Roadmap</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../NIVESH/simulator">GrowMore</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/visualisations">Visualisation</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Calculators
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="../Calculator">Stock Market vs FD returns</a>
+          <a class="dropdown-item" href="../Calculator1">Goal Planning</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../news">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../memes">Memes</a>
+      </li>
+      <li style="margin-left: 600px ;" class="nav-item">
+        <a class="nav-link" href="/login/">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signup/">Register</a>
+      </li>
+    </ul>
+  </nav>
+  <!--
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:BLACK">
+	<div class="container nim">
+		<a class="navbar-brand" href="/">
+			<i class="fas fa-chart-line fa-lg" aria-hidden="true"></i>
+            निVESH
+		</a>
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				
+				<li class="nav-item ">
+					<a class="nav-link" href="../NIVESH/simulator">Simulator</a>
+				</li>
+				
+					<li class="nav-item ">
+						<a class="nav-link" href="../Stock Forex Data/index.html">Visualisation</a>
+					</li>
+                    <li class="nav-item ">
+						<a class="nav-link" href="../News/gulpfile.js">News</a>
+					</li>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				
+					<li class="nav-item" style="color: red;">
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="/register/">Register</a>
+					</li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+-->
+
+  <header>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+      <source src="../../public/home.mp4" type="video/mp4">
+    </video>
+    <div class="container h-100">
+      <div class="d-flex h-100 text-center align-items-center">
+        <div class="w-100 text-white">
+          <b>
+            <h1 class="display-3"><span style="font-size: 80px;">नि</span>VESH</h1>
+          </b>
+          <!-- <p class="lead mb-4"><b>Morphosis 2k19</b></p><br/> -->
+          <a class="btn btn-outline-light market-button mt-5" href="/login/">
+            Invest Like a PRO
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <br>
+    <img src="https://www.linkpicture.com/q/Screenshot-2021-04-09-at-8.18.00-PM.png" alt="content" width="1150">
+  </div>
+  <div class="container jumbotron">
+    <div class="left" style="float: left;">
+      <h1>YOU ARE ON PRIORITY !</h1>
+      <h2>Chat with our stock trading specialists<br> live and clear your doubts.</h2>
+    </div>
+    <div style="margin-left: 550px" class="right">
+      <img src="https://www.teamsupport.com/hubfs/blog-live-chat.jpg" width="500">
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="container" style="text-align: center;">
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="https://goldstreetbusiness.com/wp-content/uploads/2020/11/earnings3.png" class="rounded-circle"
+          width="150" height="150">
+
+        <br>
+        <h2>
+          <center>FUNDAMENTALS</center>
+        </h2>
+        <p>Fundamental analysis involves looking at any data which is expected to impact the price or perceived value of
+          a stock. Some of the fundamentals of stocks include cash flow, return on assets, and conservative gearing.</p>
+        <p><a class="btn btn-secondary" href="/blog/fund">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://qph.fs.quoracdn.net/main-qimg-9d8aefd236c001d031ee49bf3f73a0c0" class="rounded-circle"
+          width="150" height="150">
+
+        <br>
+        <h2>BENEFITS</h2>
+        <p>Owning stocks in different companies can help you build your savings, protect your money from inflation and
+          taxes, and maximize income from your investments.</p>
+        <p><br><a class="btn btn-secondary" href="/blog/fund">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://cdn.corporatefinanceinstitute.com/assets/stock-market-crash-1024x683.jpeg"
+          class="rounded-circle" width="150" height="150">
+
+        <br>
+        <h2>RISKS</h2>
+        <p>You get recessions, you have stock market declines. If you don't understand thats going to happen, then
+          you're not ready, you won't do well in the markets.</p>
+        <p><br><a class="btn btn-secondary" href="/blog/fund">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+  </div>
+
+
+  <br>
+  <hr>
+<section id="road">
+  <div class="container">
+    <br><h1 style="text-align: center;">Timeline to become Financially Independent</h1><br><br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="main-timeline">
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-globe"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">Register and Login</h3>
+                <p class="description">First Register using your credentials by choosing "Register" option from the
+                  navigation bar and then login using the same credentials. <br><br><b>NOTE:</b>You can access all the
+                  calculators and information even without registering but using the simulator is a more personalized
+                  experience hence Registering,Login is necessary.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-rocket"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">Study</h3>
+                <p class="description">Even if you are absolutely new to stock marketing and investments, don't worry, we have
+                  got you covered and if you have basic understanding of the market we still advice you to head over to
+                  our information page and read, this will help you to undestand the meanings of all professional terms
+                  often used while trading.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-globe"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">Visualize</h3>
+                <p class="description">Now that you have acquired all the theoritical knowledge, you are now ready to visualize that knowledge,Choosing the visualize option you can analyze how the various stocks have performed over different periods of time and scale. You can also use several calculators to get an idea on what returns to expect after specific period of time and interest rates.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-rocket"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">Know Current News</h3>
+                <p class="description">We have a news section included which will help you to be up to date. Believe it or not stock market is greatly influenced by news circulating in the market. A negative news would lead to decrease in share prices and a positive news would do the opposite. In the news section you can read general news of BSE and also specific stock news by selecting it from the list. You can also read the original article by clicking on the title of news if you want to know more about that news.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-globe"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">GrowMore - Simulate</h3>
+                <p class="description">Finally its time to get hands on experience. Now you have sufficient information required to choose a stock to buy. You can use our simulator which will make you familier with the experience before buying the actual stock. This step is very important as we all know net practice is one thing and playing actual match is other.Our simulator acts as a practice match which will make you aware of the small mistakes and you will be bullet proof once you start trading for real.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline">
+            <a href="" class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fa fa-rocket"></i>
+              </div>
+
+              <div class="inner-content">
+                <h3 class="title">Enjoy</h3>
+                <p class="description">Congratulations!! You have already done everything needed to buy a stock and trade. Now relax and head over to our memes section.This helps to balance the whole hectic process of studying and trading. Also memes are considered fastest travelling news source hence you can actually get to know some really amazing facts along with fun.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+ <br><br>
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-copyright">
+          <p class="text-center">
+            <a class="anchor-black" href="/login/" target="_blank">S T O C K S</a>
+          </p>
+        </div>
+        <div class="col-md-4 mx-auto">
+          <h3 class="text-center"><i class="fas fa-chart-line" aria-hidden="true"></i><br>
+            निVESH
+          </h3>
+          <p class="text-center">© निVESH | 2021 - 2025</p>
+        </div>
+        <div class="col-md-4 social-networks">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a class="anchor-black" target="_blank" href="#">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="list-inline-item">
+              <a class="anchor-black" target="_blank" href="#">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="list-inline-item">
+              <a class="anchor-black" target="_blank" href="#">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="list-inline-item">
+              <a class="anchor-black" target="_blank" href="#">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

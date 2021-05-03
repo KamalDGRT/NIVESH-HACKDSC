@@ -1,0 +1,253 @@
+<!-- Styles -->
+<html>
+    <head>
+        <title>Stock Market vs FD Returns</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="shortcut icon" href="../../public/nivesh.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+    }
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    
+    <!-- Chart code -->
+    <script>
+      var f = 0;
+      var stocks = 0;
+      function values1() {
+        var api = "MEG0X1SYXJ50IDUO";
+  var symbol = document.getElementById("companies").value;
+  var company = document.getElementById("companies").value.slice(4);
+  if(company !== null){
+    $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+ symbol + "&outputsize=full&apikey="+api)
+    .done(function(data){
+      var date = data["Time Series (Daily)"]
+      let a = 365*document.getElementById("years").value;
+      let b = 8;
+      let i=0;
+      var flag=0;
+      for(var d in date){
+        if(i==0)
+        {
+          //alert("start ho gaya");
+          start = d;
+        }
+        else if(i==a) {
+          //alert("end ho gaya");
+          end=d;
+          flag=1;
+          break;
+        }
+        i++;
+      }
+      if(flag==0){
+        end = d;
+      }
+      //alert(data[start] + "hello" + end);
+      var pstart = date[start]["4. close"];
+      //alert(pstart);
+      var pend = date[end]["4. close"];
+      stocks = (pstart - pend)/pend;
+      //alert(stocks + " " + pend + " " + pstart);
+      values();
+  });
+  }
+}
+        function values() {
+    am4core.ready(function() {
+    
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+    
+    // Create chart instance
+    var chart = am4core.create("chartdiv", am4charts.XYChart);
+    
+    // Add data
+    /*
+    chart.data = [
+      {date:new Date(2019,5,12), value1:50, value2:48, previousDate:new Date(2019, 5, 5)},
+      {date:new Date(2019,5,13), value1:53, value2:51, previousDate:new Date(2019, 5, 6)},
+      {date:new Date(2019,5,14), value1:56, value2:58, previousDate:new Date(2019, 5, 7)},
+      {date:new Date(2019,5,15), value1:52, value2:53, previousDate:new Date(2019, 5, 8)},
+      {date:new Date(2019,5,16), value1:48, value2:44, previousDate:new Date(2019, 5, 9)},
+      {date:new Date(2019,5,17), value1:47, value2:42, previousDate:new Date(2019, 5, 10)},
+      {date:new Date(2019,5,18), value1:59, value2:55, previousDate:new Date(2019, 5, 11)}
+    ]
+    */
+    var jsonArr = [];
+  var x = parseInt(document.getElementById("amount").value);
+  var y = parseInt(document.getElementById("amount").value);
+  var banks = 1.07;
+  //var stocks = 1.15;
+  
+
+
+
+  var d = parseInt(document.getElementById("years").value);
+  var date = new Date();
+  var yyyy = date.getFullYear();
+  var mm = date.getMonth() + 1;
+  var dd = date.getDate();
+  for (var i = 0; i <= d; i++) {
+      jsonArr.push({
+          date: yyyy + "-" + mm + "-" + dd,
+          value1: x,
+          value2: y
+      });
+      x = x*banks;
+      y = y*stocks;
+      yyyy +=1;
+      x = x.toFixed(2);
+      y = y.toFixed(2);
+  }
+  chart.data = jsonArr;
+    
+    // Create axes
+    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.minGridDistance = 50;
+    
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    
+    // Create series
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = "value1";
+    series.dataFields.dateX = "date";
+    series.strokeWidth = 5;
+    series.minBulletDistance = 10;
+    series.tooltipText = "[bold]Banks: {value1}\n[bold]Stocks: {value2}";
+    series.tooltip.pointerOrientation = "vertical";
+ 
+    // Create series
+    var series2 = chart.series.push(new am4charts.LineSeries());
+    series2.dataFields.valueY = "value2";
+    series2.dataFields.dateX = "date";
+    series2.strokeWidth = 5;
+    series2.strokeDasharray = "3,4";
+    series2.stroke = series.stroke;
+    
+    // Add cursor
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.xAxis = dateAxis;
+    document.getElementById("text").innerHTML = 
+    `
+    <h2>Bank FD: ₹ ${x}<br>
+    <h2>Stock Market: ₹ ${y} <br>
+    <h3>*Historical market return have been taken to estimate potential return on equity.
+    <br>
+    <h4>Dashed Line: Stocks
+    <br>
+    <h4>Solid Line: Banks
+    `;
+    document.getElementById("text").style.border = "thick dashed blue";
+    document.getElementById("text").style.backgroundColor = "greenyellow";
+    document.getElementById("text").style.padding = "30px";
+    }); // end am4core.ready()
+}
+    </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/">
+              <i class="fas fa-chart-line fa-lg" aria-hidden="true"></i>
+              निVESH
+            </a>
+        
+            <!-- Links -->
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="../#road">Roadmap</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../NIVESH/simulator">GrowMore</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/visualisations">Visualisation</a>
+              </li>
+        
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Calculators
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="../Calculator">Stock Market vs FD returns</a>
+                  <a class="dropdown-item" href="../Calculator1">Goal Planning</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../news">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../memes">Memes</a>
+              </li>
+              <li style="margin-left: 600px ;" class="nav-item">
+                <a class="nav-link" href="/login/">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup/">Register</a>
+              </li>
+            </ul>
+          </nav>
+    <!-- HTML -->
+    <div class="container">
+        <div style="margin-top: 30px;" class="jumbotron">
+            <h1 align="center">Stock Market vs FD Returns</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                    <label style="font-size: 40px;" for="amount"><b>Your Investment Amount:</b></label>
+                    <input style="width: 500px;" type="number" class="form-control" id="amount" name="amount"><br>
+                    <label style="font-size: 40px;" for="years"><b>Tenure (in years)</b></label>
+                    <input style="width: 500px;" type="number" class="form-control" id="years" name="years"><br>
+                    <label style="font-size: 40px;" for="companies"><b>Stock</b></label>
+                    <select id="companies" class="form-control" name="companies" style="width: 500px;">
+                      <option value="BSE:RELIANCE">Reliance</option>
+                      <option value="BSE:BAJFINANCE">Bajaj Finance</option>
+                      <option value="BSE:HINDUNILVR">Hindu Unilever Ltd.</option>
+                      <option value="BSE:HDFC">HDFC</option>
+                      <option value="BSE:SBIN">State Bank of India</option>
+                      <option value="BSE:ITC">ITC Ltd.</option>
+                      <option value="BSE:MARUTI">Maruti Suzuki India Ltd.</option>
+                      <option value="BSE:TCS">Tata Consultancy Services Ltd.</option>
+                      <option value="BSE:INFY">Infosys</option>
+                      <option value="BSE:HCLTECH">HCL Technologies</option>
+                      <option value="BSE:HINDALCO">Hindalco Industries Ltd.</option>
+                      <option value="BSE:ADANITRANS">Adani Transmission Ltd.</option>
+                      <option value="BSE:ULTRACEMCO">UltraTech Cement Ltd.</option>
+                      <option value="BSE:NESTLEIND">Nestle India Ltd.</option>
+                      <option value="BSE:TATASTEEL">TATA Steel</option>
+                      <option value="BSE:ADANIPORTS">Adani Ports and Special Economic Ltd.</option>
+                      <option value="BSE:ONGC">Oil and Natural Gas Corporation Ltd.</option>
+                      <option value="BSE:DABUR">Dabur India Ltd.</option>
+                      <option value="BSE:BPCL">Bharat Petroleum Corporation Ltd.</option>
+                      <option value="BSE:YESBANK">Yes Bank</option>
+                      <option value="BSE:GAIL">GAIL (India) Ltd.</option>
+                      <option value="BSE:COLPAL">Colgate-Palmolive India Ltd.</option>
+                    </select><br>
+                    <button style="font-size: 30px; margin-left: 150px;" class="btn btn-primary" onclick="values1()">Submit</button>
+
+            </div>
+            <div class="col-md-6">
+                <div id="text">
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="chartdiv"></div>
+    </div>
+    </body>
+</html>    

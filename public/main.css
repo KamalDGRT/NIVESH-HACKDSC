@@ -1,0 +1,131 @@
+
+#stocks{
+	float: left;
+	text-align: left;
+	width:50%;
+	border-radius: 25px;
+	margin-left: 20px;
+	position: relative;
+}
+#portfolio{
+	background-color:rgb(122, 122, 255);
+	float: left;
+	border-radius: 25px;
+	border:2px solid green;
+	padding: 10px;
+	width: 40%;
+}
+#transactionHistory{
+
+	height: auto;
+	border:1px solid green;
+}
+
+#searchField{
+	margin: -10px;
+}
+
+#searchDiv{
+	border:1px solid green;
+	padding: -10px;
+	
+}
+.button{
+	cursor: pointer;
+}
+#chart_div{
+	width: 100%;
+}
+
+
+#buyStock{
+	border:1px solid gray;
+	width: 100%;
+	height: 259px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	display: none;
+}
+
+#sellStock{
+	border:1px solid gray;
+	width: 100%;
+	height: 259px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	display: none;
+		
+		
+}
+
+table{
+	width: 100%;
+}
+table, th, td{
+	border-bottom: 1px solid black;
+	    border-collapse: collapse;
+	    padding: 10px;
+	    text-align: center;
+}
+
+.up{
+	background-color: rgb(0, 230, 59);
+	background-color: rgb(0, 255, 0);
+	color: white;
+}
+
+.down{
+	background-color: rgb(255, 14, 21);
+	color: white;
+}
+
+.input__field{
+	border:1px solid #458b00;
+	
+	
+}
+.nextDay{
+	width: 100px;
+	font-size: 0.8em;
+	padding: 0;
+	margin: 2px;
+
+}
+.nextDay>span{
+	padding: 0.5em 0.5em;
+}
+
+.nextDay:after, .nextDay > span{
+	padding: 0.5em 0.5em;
+
+}
+.tradeApp>input{
+	width: 100px;
+}
+#portfolioGraph{
+	width: 100%;
+	height: 200px;
+}
+#portfolioReturn{
+	width: 100px;
+	padding: 2px;
+	
+}
+
+.history{
+	width: 80px;
+	margin: 3px;
+}
+
+.history>span{
+	padding: 0.5em 0.5em;
+}
+
+.history:after, .history > span{
+	padding: 0.5em 0.5em;
+
+}
